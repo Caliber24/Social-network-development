@@ -132,6 +132,12 @@ REST_FRAMEWORK = {
     )
 }
 
+from datetime import timedelta
+
 SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES':('JWT',)
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'UPDATE_LAST_LOGIN': True,
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=6),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+    
 }
