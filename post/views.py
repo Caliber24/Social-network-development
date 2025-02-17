@@ -12,7 +12,6 @@ from .serializers import PostSerializer, ReactSerializer
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
       return Post.objects.prefetch_related('reacts').filter(status=1)
@@ -44,12 +43,11 @@ class ReactViewSet(ModelViewSet):
       existing_react.save()
     else:
       serializer.save(post=post, user=user, is_like=is_like)
-      
-  
+
+
     def update(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def partial_update(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-  
 
